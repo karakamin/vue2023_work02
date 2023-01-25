@@ -16,19 +16,19 @@ const app = {
     },
     methods:{
         login() {
-            const signin = "/admin/signin";
-            axios.post(`${this.api.url}${signin}`, this.user)
+            axios.post(`${this.api.url}/admin/signin`, this.user)
             .then((res) => {
                 const{ message, expired, token } = res.data;
 
                 // 寫入 cookies
                 document.cookie = `loginToken=${token};expires=${new Date(expired)}; path=/`;
                 alert(message);
-                window.location = "./products.html";
+                window.location = './products.html';
             }).catch((err) => {
                 const { message, error: { code } } = err.data;
-                if(code === "auth/user-not-found") {
-                    alert("使用者不存在");
+                code.f
+                if(code === 'auth/user-not-found') {
+                    alert('使用者不存在');
                 } else {
                     alert(`帳號或密碼錯誤，${message}，請重新登入！`);
                 }
